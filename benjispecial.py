@@ -6,6 +6,7 @@ import requests
 
 driver=webdriver.Chrome("C:\chromewebdriver\chromedriver.exe")
 driver.get("https://hasartespit.csb.gov.tr/")
+driver.maximize_window()
 print(driver.title)
 time.sleep(20)
 html=driver.page_source
@@ -15,10 +16,11 @@ kelime = []
 for tr in soup.find_all('tr'):
     td_tags = tr.find_all('td')
     if len(td_tags) >= 9:
-        kelime="".join(td_tags[0].text+"-"+td_tags[1].text+"-"+td_tags[2].text+"-"+td_tags[3].text +"-"+ td_tags[4].text +"-"+ td_tags[9].text)  
+        kelime="".join(td_tags[0].text+"-"+td_tags[1].text+"-"+td_tags[2].text+"-"+td_tags[3].text +"-"+ td_tags[4].text +"-"+ td_tags[7].text)  
     for td in tr.find_all('td'):
         liste=[]
         if td.find('a'):
+            
             for link in td.find_all('a'):           
                 liste.append(link['href'])              
                 for i, j in zip(liste, range(len(liste))):
